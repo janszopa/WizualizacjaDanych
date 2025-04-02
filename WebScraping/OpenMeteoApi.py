@@ -3,18 +3,19 @@ import pandas as pd
 
 # Lista miast z ich współrzędnymi (latitude, longitude)
 cities = {
-    "Warsaw": (52.23, 21.01),
-    "Berlin": (52.52, 13.41),
-    "Paris": (48.85, 2.35),
-    "London": (51.51, -0.13),
-    "New_York": (40.71, -74.01)
+    #"Warsaw": (52.23, 21.01),
+    #"Berlin": (52.52, 13.41),
+    #"Prague": (50.088, 14.4208),
+    #"Vilnius": (54.6892, 25.2798),
+    "Minsk": (53.9, 27.5667),
+    "Kyiv": (50.4547, 30.5238)
 }
 
-# Zakres dat
-start_date = "2015-01-01"
+# Zakres dat (20 lat)
+start_date = "2004-01-01"
 end_date = "2023-12-31"
 
-# Jakie dane dzienne pobieramy
+# Parametry dzienne do pobrania
 daily_params = [
     "temperature_2m_max",
     "temperature_2m_min",
@@ -47,9 +48,9 @@ def fetch_city_data(city_name, lat, lon):
 
     df = pd.DataFrame(data["daily"])
     df["city"] = city_name
-    df.to_csv(f"{city_name}_weather_2015_2023.csv", index=False)
-    print(f"Dane zapisane: {city_name}_weather_2015_2023.csv")
+    df.to_csv(f"{city_name}_weather_2004_2023.csv", index=False)
+    print(f"Dane zapisane: {city_name}_weather_2004_2023.csv")
 
-# Pobieramy dane dla wszystkich miast
+# Pobierz dane dla wszystkich miast
 for city, (lat, lon) in cities.items():
     fetch_city_data(city, lat, lon)
